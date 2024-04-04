@@ -1,0 +1,26 @@
+while count != 6:
+        b = input("\nGuesses left: " + str(6 - count) + "\nEnter guess: ").upper()
+        if b == rchoice:
+            break
+        # e = list(b)
+        # c = list(b)
+        # dict = {i:rchoice.count(i) for i in rchoice}
+        if len(b) != wlength or b.isdigit():
+            print("Please enter a " + str(wlength) + " letter word")
+            continue
+        
+        # for i, v in enumerate(b):
+        #     if v == rchoice[i] and int(dict[v]) == 1:
+        #         for i, k in enumerate(b):
+        #             if k in rchoice[i] and e[i] != 2 and int(dict[k]) <= 0:
+        #                 e[i] = 0
+        #             elif k in rchoice and e[i] != 2 and int(dict[k]) > 0:
+        #                 e[i] = 1
+        #         e[i] = 2
+        #     elif v == rchoice[i] and int(dict[v]) > 1:
+        #         e[i] = 2
+        #         dict[v] -= 1
+        #     elif v in rchoice and v != rchoice[i]: 
+        #         e[i] = 1
+        #     else:
+        #         e[i] = 0
