@@ -150,31 +150,33 @@ public class SimpleGraph<T> implements GraphInterface<T> {
     }
 
     
+    public Queue<VertexInterface<T>> _getDepthFirstTraversal(T origin) {
+        Queue<VertexInterface<T>> q = new LinkedList<VertexInterface<T>>();
+        Queue<VertexInterface<T>> q2 = new LinkedList<VertexInterface<T>>();
+        
+        Iterator<VertexInterface<T>> ittr = getVertex(origin).getNeighborIterator();
+        while(ittr.hasNext()) {
+            VertexInterface<T> t = ittr.next();
+            if(t.isVisited()) continue;
+            t.visit();
+            q.add(t);
+        }
+        for(VertexInterface<T> ns : q) {
+            Iterator<VertexInterface<T>> tr = _getDepthFirstTraversal(ns.getLabel()).iterator();
+            q2.add(ns);
+            while(tr.hasNext()) {
+                q2.add(tr.next());
+            }
+        }
+        return q2;
+    }
+    
     @Override
     public Queue<VertexInterface<T>> getDepthFirstTraversal(T origin) {
         setAllVerticesUnvisited();
-        Stack<VertexInterface<T>> s = new Stack<VertexInterface<T>>();
-        Queue<VertexInterface<T>> order = new LinkedList<VertexInterface<T>>();
-        s.push(getVertex(origin));
-        
-        while(!s.isEmpty()) {
-            VertexInterface<T> top = s.peek();
-            if(top.isVisited() == false) {
-                top.visit();
-                order.add(top);
-                Iterator<VertexInterface<T>> b = top.getNeighborIterator();
-                while(b.hasNext()) {
-                    VertexInterface<T> c = b.next();
-                    if(c.isVisited() == false) {
-                        s.push(c);
-                    }
-                }
-            }
-            else{
-                s.pop();
-            }
-        }
-        return order;
+        Queue<VertexInterface<T>> r = _getDepthFirstTraversal(origin);
+        setAllVerticesUnvisited();
+        return r;
     }
 
     public Map<T, Integer> measureDegrees() {
