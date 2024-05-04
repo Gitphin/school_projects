@@ -1,0 +1,52 @@
+incr stride vs working set
+*try to keep everything in L1 cache
+
+dont += same var multiple times in loop
+*loop unrolling
+
+
+
+
+rows * cols = 12
+
+4 x 3 matrix
+
+
+i,j = 
+
+i / nrows
+
+0 1 2 0 1 2 0 1 2 0 1 2
+
+i % nrows
+
+0 0 0 1 1 1 2 2 2 3 3 3
+
+
+
+1 2 3 4 5 6 7 8
+
+5 / 8 = 0
+
+
+
+
+0,0 0,1 0,2 1,0 1,1 1,2 2,0 2,1 2,2 3,0 3,1 3,2
+
+ // for (long k = 0; k < m * n ; k+=5) {
+    //     long div = k / n;
+    //     if (p != k) {
+    //         for (int l = 0; k < (n * div); l++, k++, q++) {
+    //             results[l] += MGET(matrix, p, q);
+    //         }
+    //         q = 0;
+    //         p = k;
+    //     }
+    //         // instead of k % n, reset back to 0 once long div hits new val
+    //     results[0] += MGET(matrix, div, (q));
+    //     results[1] += MGET(matrix, div, (q + 1));
+    //     results[2] += MGET(matrix, div, (q + 2));
+    //     results[3] += MGET(matrix, div, (q + 3));
+    //     results[4] += MGET(matrix, div, (q + 4));
+    //     q += 5;
+    // }

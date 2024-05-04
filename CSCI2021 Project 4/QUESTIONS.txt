@@ -1,0 +1,84 @@
+                           _____________________
+
+                            PROJECT 3 QUESTIONS
+                           _____________________
+
+Project Instructions
+================
+
+    The following questions assume you have completed the code and will ask you
+    about what you observed. The questions are essay style and will be manually
+    graded. You should write at most one paragraph (roughly 3 to 5 sentences)
+    for each question that asks for an explanation. For the question that asks
+    you to calculate cache misses, you must show all of your work.
+
+
+1. CACHES AND CACHE MISSES
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+According to the "lscpu" command run on a Keller Hall 1-262 machine, the L1
+cache of a Keller 1-262 machine is 128 kilobytes (where 1 kilobyte = 1024
+bytes). Assume the cache has a 64-byte block size.
+
+Suppose we are running a C program on one of the Keller 1-262 machines that
+features an int array with 262,144 elements. Assume the array is aligned to the
+L1 cache's block size (i.e., the array's starting address is a multiple of 64).
+Our program performs a linear search over the array for a value that is not
+stored in the array.
+
+How many cache misses occur during this search? You should ignore the loop
+variable (e.g., "int i"). Make sure to show your work.
+
+
+
+
+
+First we find the size of the array (262,144). Then, we divide by how many elements (4 byte ints each) a block 
+in the cache can store (64 bytes), 64 bytes / 4 bytes = 16 bytes. We then divide the array size (262,144) by this
+value (16) to get our total of 16384 cache misses. These cache misses will occur since the available cache blocks 
+(131,062 / 64 = 2048) is too small to hold the array provided.
+
+
+2. WALL TIME AND CPU TIME
+~~~~~~~~~~~~~~~~~~~~~~~~~
+In the 'matrix_main.c', we measure both the CPU and wall time required for the
+functions to run. What is the difference between these two types of time
+measurement? When might we be interested in the wall time? CPU time? Which
+makes more sense to use for what we care about in this project?
+
+
+
+
+
+CPU time measures the time it takes for the CPU to execute the function, while wall time accounts for all processes
+involved and measures the total / real-world time it takes for the function to execute. For example, a CPU time would
+be useful as a guideline for understanding or comparing calculation speeds and algorithm efficiency. 
+Wall time might be useful for when you want to see how a program responds with other applications / devices and network compliance.
+For this project, I think CPU time would be most useful since we should only care about the efficiency of our function and not
+really account for external factors.
+
+
+3. LINEAR SEARCH 3-TIMES
+~~~~~~~~~~~~~~~~~~~~~~~~
+This question refers to the work you did in Lab 8. Refer back to this lab as
+needed to answer this question.
+
+We asked you to improve upon a provided version of the function "list_find".
+Why was the provided version inefficient? How did your improved version compare
+to performing the same search using an array instead of a linked list? Why do
+you think this is?
+
+
+
+
+
+The provided version of list_find was inefficient since it runs in O(n^2) time (due to calling a 
+lookup func within that starts at beginning of list), while the improved version runs in O(n) time.
+Furthermore, linked lists are not contiguous in memory. Although linked lists can be better for inserting and deleting, arrays 
+handle getting an element much more efficiently due to them being contiguous in memory, and therefore means 
+it benefits from better cache locality. With an improved cache locality, cache misses are less likely and access times
+are more efficient, as often elements in contiguous memory can be stored together. My improved version
+of the search in lab 8 takes advantage of this with making the lookup time O(n) with a pointer and usage of an array, 
+which performed with much better efficiency than the given "list_find" function.
+
+
+
