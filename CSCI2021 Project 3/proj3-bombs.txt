@@ -1,0 +1,55 @@
+gdb bomb
+set args input.txt
+
+layout asm
+lay regs
+
+ni -> next instr
+
+initialize_bomb - creates the bombs
+
+b phase_1
+
+b explode_bomb
+
+c -> go to next breakpoint
+VAL PRINT:
+
+print/s ($reg)
+print/t ($reg)
+
+MEM ADDR PRINT:
+x/s ($reg) -> print str 
+x/d ($reg) -> print int 
+x/h ($reg) -> print hex
+
+si -> step into func
+
+
+ECCLESTON HURT SMITH
+
+rose = rbx/r13
+
+FIND RBX
+
+rsp = Eccleston *
+rsp 0x8 = Tennant *
+rsp 0x10 = Smith *
+rsp 0x18 = Capaldi *
+rsp 0x20 = Whitaker * 
+rsp 0x28 = Hurt
+rsp 0x30 = Baker
+rsp 0x38 = Davison
+rsp 0x40 = Rose
+rsp 0x48 = Amy
+rsp 0x50 = Yasmin
+rsp 0x58 = Sarah
+rsp 0x60 = Adric
+rsp 0x68 = Moment
+rsp 0x70 = Clara
+rsp 0x78 = Donna
+
+Adric vs Donna
+
+
+

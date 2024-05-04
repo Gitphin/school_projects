@@ -1,0 +1,7 @@
+make
+gdb btest
+tui enable
+
+break (func)
+
+set args -f (func) -1 ... -T 0
